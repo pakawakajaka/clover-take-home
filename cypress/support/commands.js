@@ -23,3 +23,11 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add('googleSearch', (input) => {
+  cy.visit('https://www.google.com')
+  cy.get('input[title=Search]').type(`${input}{enter}`)
+})
+
+Cypress.Commands.add('googleFindResult', (index) => {
+  return cy.get('#search').find('a > h3').filter(':visible').eq(index)
+})

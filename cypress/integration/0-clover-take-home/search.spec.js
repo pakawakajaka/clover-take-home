@@ -2,22 +2,33 @@ import SearchPage from '../../support/pages/google/SearchPage.js'
 import ResultsPage from '../../support/pages/google/ResultsPage.js'
 
 describe('Google Search', () => {
-  const url = 'https://www.google.com'
-  const searchPage = new SearchPage()
-  const resultsPage = new ResultsPage()
+  const input = 'clover'
+  const index = 0
 
-  beforeEach(() => {
-    cy.visit(url)
+  context('using Page Objects', () => {
+    const url = 'https://www.google.com'
+    const searchPage = new SearchPage()
+    const resultsPage = new ResultsPage()
+    beforeEach(() => {
+      cy.visit(url)
+    })
+
+    it('When a term is searched it should be in the first result', () => {
+      searchPage.searchInput(input)
+
+      const result = resultsPage.getResult(index)
+
+      result.contains(input, { matchCase: false })
+    })
   })
 
-  it('When a term is searched it should be in the first result', () => {
-    const input = 'clover'
-    const index = 0
+  context('using Cypress Commands', () => {
+    it('When a term is searched it should be in the first result', () => {
+      cy.googleSearch(input)
 
-    searchPage.searchInput(input)
+      const result = cy.googleFindResult(index)
 
-    const result = resultsPage.getResult(index)
-
-    result.contains(input, { matchCase: false })
+      result.contains(input, { matchCase: false })
+    })
   })
 })
