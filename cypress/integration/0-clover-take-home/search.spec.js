@@ -1,19 +1,23 @@
-describe("Google Search", () => {
-  const url = "https://www.google.com";
+import SearchPage from '../../support/pages/google/SearchPage.js'
+import ResultsPage from '../../support/pages/google/ResultsPage.js'
+
+describe('Google Search', () => {
+  const url = 'https://www.google.com'
+  const searchPage = new SearchPage()
+  const resultsPage = new ResultsPage()
 
   beforeEach(() => {
-    cy.visit(url);
-  });
+    cy.visit(url)
+  })
 
-  it("When a term is searched it should be in the first result", () => {
-    const input = "clover";
-    const index = 0;
+  it('When a term is searched it should be in the first result', () => {
+    const input = 'clover'
+    const index = 0
 
-    const search = cy.get("input[title=Search]");
-    search.type(`${input}{enter}`);
+    searchPage.searchInput(input)
 
-    const results = cy.get("#search").find("a > h3").filter(":visible");
+    const result = resultsPage.getResult(index)
 
-    results.eq(index).contains(input, { matchCase: false });
-  });
-});
+    result.contains(input, { matchCase: false })
+  })
+})
