@@ -28,6 +28,10 @@ Cypress.Commands.add('googleSearch', (input) => {
   cy.get('input[title=Search]').type(`${input}{enter}`)
 })
 
+Cypress.Commands.add('googlePage', (page) => {
+  cy.get(`a[aria-label='Page ${page}']`).click()
+})
+
 Cypress.Commands.add('googleFindResult', (index) => {
   return cy.get('#search').find('a > h3').filter(':visible').eq(index)
 })
