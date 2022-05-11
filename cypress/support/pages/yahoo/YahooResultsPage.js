@@ -8,9 +8,5 @@ class YahooResultsPage extends ResultsPage {
       .filter(':visible')
       .eq(index)
   }
-
-  hello() {
-    console.log('YahooResultsPage')
-  }
 }
 export default YahooResultsPage

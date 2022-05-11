@@ -1,13 +1,10 @@
 import SearchPage from '../SearchPage'
 
-const url = 'https://www.google.com'
-
 class GoogleSearchPage extends SearchPage {
-  searchInput(input) {
-    cy.get('input[title=Search]').type(`${input}{enter}`)
-  }
-  visit() {
-    cy.visit(url)
+  constructor() {
+    super()
+    this.searchElementLocator = 'input[title=Search]'
+    this.url = 'https://www.google.com'
   }
 }
 export default GoogleSearchPage

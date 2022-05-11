@@ -1,15 +1,10 @@
 import SearchPage from '../SearchPage'
 
-const url = 'https://www.yahoo.com'
-const searchLocator = 'input._yb_luwfs'
-
 class YahooSearchPage extends SearchPage {
-  visit() {
-    cy.visit(url)
+  constructor() {
+    super()
+    this.searchElementLocator = 'input._yb_luwfs'
+    this.url = 'https://www.yahoo.com'
   }
-
-  searchInput(input) {
-    cy.get('input._yb_luwfs').type(`${input}{enter}`)
-}
 }
 export default YahooSearchPage

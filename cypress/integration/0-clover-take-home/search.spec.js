@@ -19,9 +19,7 @@ const searchEngines = [
   },
 ]
 
-
 describe('Search', () => {
-
   searchEngines.forEach((searchEngine) => {
     it(
       'When a term is searched it should be in the first result ' +
